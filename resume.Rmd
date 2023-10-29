@@ -1,0 +1,53 @@
+---
+title: "Resume"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+---
+
+## Zhezheng Jin
+## Tel: (740) 408-1632 |Email: zj2358@columbia.edu
+
+## Education
+### Columbia University Mailman School of Public Health New York, NY
+Master of Public Health (MPH), Epidemiology (GPA: 3.86/4), Sep 2022 – May 2024
+- Certificate: Applied Biostatistics and Public Health Data Science
+- Relevant Courses: Survival Analysis, Applied Regression, Data Science I, Mathematical Statistics
+
+### Muskingum University New Concord, OH
+BA, Public Health Studies (GPA: 3.94/4), Aug 2021 – May 2022
+
+### North China Institute of Science& Technology Hebei, China
+BE, Occupational Safety and Public Health (GPA: 3.69/4), Sep 2018 – June 2021
+
+## Skills
+- Programming languages/Tools: SQL, R, SAS, SPSS, STATA, SEER*Stat
+- Language: Mandarin (Native), English (Fluent), Japanese (Basic)
+
+## Experiences
+
+### Research Assistant, June 2023 – Present
+Columbia University Mailman School of Public Health, Department of Epidemiology New York, NY
+
+#### Hepatocellular Carcinoma (HCC) & SEER Project – Dr. McDonald’s Lab
+
+- Developed a statistical analysis plan (SAP) identifying research questions affecting health disparities across races in the U.S.
+- Performed statistical analysis in SAS with a database of 2000+ data through building linear mixed models & ANOVA test expounding the trends of HCC incidence rate in 50 states categorized by Jim Crow Law
+- Co-authored in the manuscript of U.S. Hepatocellular Carcinoma incidence trends by states of Jim Crow status, and race and ethnicity
+
+#### Hepatitis B Intervention programs review
+
+- Conducted a systematic review of Hepatitis B intervention programs across 4000+ references importing, 500+ titles and abstracts screening, 62 full texts reviewing, and data extraction from 33 journal articles with Covidence platform contributing to ongoing research efforts
+
+### Global Practica Program Intern-SMHC, May 2023 –August 2023
+Columbia-WHO Center for Global Mental Health Shanghai, China
+
+- Utilized multivariable logistic regression models, Likelihood ratio tests, and multivariate Cox proportional hazard regression model to conduct a statistical/survival analysis of depression, anxiety disorders, and suicide ideation among college students using RStudio
+- Proposed implementation strategic plan in the Child and Adolescent Mental Health Service System Effectiveness Enhancement Program (funded by the Chinese Medical Board, Inc) to improve the quality of mental health services in Shanghai for children and adolescents
+
+### Database Manager, July 2021 – Sep 2021
+Bohe Technology Co., Ltd. Hebei, China
+
+- Assumed accountability for proactively resolving routine issues within the company's database, solved 500+ issues including missing data and inconsistent formats
+- Conducted daily maintenance of the database using MySQL, performed 1000+ statements and managed the customer-related data

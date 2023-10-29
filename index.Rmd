@@ -1,5 +1,5 @@
 ---
-title: "My website"
+title: "ZhezhengJin's website"
 output: 
   html_document:
     toc: true
@@ -8,8 +8,8 @@ output:
 
 # This is Zhezheng Jin's personal website
 
-![](https://media.giphy.com/media/drXGoW1iudhKw/giphy.gif)
+Hello, I'm Zhezheng Jin. Welcome to my digital space where you can learn more about me and my work.
 
-# Link to about me
+# Link to my resume
 
-[about](about.html)
+[resume](resume.html)
