@@ -1,0 +1,127 @@
+---
+title: "Instacart Analysis with Flexdashboard"
+author: "Zhezheng Jin"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+    navbar:
+      - { title: "Home", href: index.html }
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(knitr)
+library(plotly)
+library(p8105.datasets)
+library(flexdashboard)
+
+knitr::opts_chunk$set(
+	echo = TRUE,
+	warning = FALSE,
+	message = FALSE,
+	fig.width = 8, 
+  fig.height = 6,
+  out.width = "90%"
+)
+
+theme_set(theme_minimal() + theme(legend.position = "bottom"))
+
+options(
+  ggplot2.continuous.colour = "viridis",
+  ggplot2.continuous.fill = "viridis"
+)
+
+scale_colour_discrete = scale_colour_viridis_d
+scale_fill_discrete = scale_fill_viridis_d
+```
+
+Let's take a look at the dataset 
+
+```{r}
+instacart
+```
+
+Data wrangling
+
+```{r}
+instacart <- instacart %>%
+  janitor::clean_names() %>%
+  mutate(order_dow = case_when(
+    order_dow == 0 ~ "Sun",
+    order_dow == 1 ~ "Mon",
+    order_dow == 2 ~ "Tue",
+    order_dow == 3 ~ "Wed",
+    order_dow == 4 ~ "Thu",
+    order_dow == 5 ~ "Fri",
+    order_dow == 6 ~ "Sat",
+    TRUE ~ as.character(order_dow)
+  ),
+  order_dow = factor(order_dow, levels = c("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")))
+```
+
+
+From the dataset, we know there are `r ncol(instacart)` variables in this dataset: `r paste(colnames(instacart), collapse=", ")`. With these information, I am going to create 3 distinct plots:
+
+1. A histogram showing the number of orders for each day of the week.
+
+2. A line plot showing the average number of Orders by hour within each day of the week.
+
+3. A box plot of distribution of Add to Cart Order for top 5 Products.
+
+
+## Histogram
+
+```{r}
+plot_ly(instacart, x = ~order_dow) %>%
+  add_histogram(name = "Count of Orders") %>%
+  layout(title = "Distribution of Orders by Day of the Week",
+         xaxis = list(title = 'Day of the Week'), 
+         yaxis = list(title = 'Count of Orders'))
+```
+
+## Line plot
+
+```{r}
+instacart %>%
+  group_by(order_dow, order_hour_of_day) %>%
+  summarise(avg_orders = n() / n_distinct(user_id)) %>%
+  arrange(order_dow, order_hour_of_day) %>%
+  plot_ly(x = ~order_hour_of_day, 
+          y = ~avg_orders, 
+          color = ~order_dow,
+          type = "scatter", 
+          mode = "lines+markers", 
+          marker = list(size = 7),
+          line = list(width = 2)) %>%
+  layout(title = "Average Number of Orders by Hour within each Day of the Week",
+         xaxis = list(title = "Hour of the Day"),
+         yaxis = list(title = "Average Number of Orders"),
+         legend = list(title = list(text = 'Day of the Week')),
+         showlegend = TRUE)
+```
+
+## Box plot
+
+```{r}
+top_products <- instacart %>%
+  group_by(product_name) %>%
+  tally() %>%
+  top_n(5, wt = n) %>%
+  pull(product_name)
+
+subset_data <- instacart %>%
+  filter(product_name %in% top_products)
+
+plot_ly(data = subset_data, 
+        y = ~add_to_cart_order, 
+        x = ~product_name, 
+        type = "box",
+        orientation = "v") %>%
+  layout(title = "Distribution of Add to Cart Order for Top 5 Products",
+         yaxis = list(title = "Add to Cart Order"),
+         xaxis = list(title = "Product Name", tickangle = 15))
+```
+
+
+

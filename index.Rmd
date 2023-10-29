@@ -2,10 +2,16 @@
 title: "ZhezhengJin's website"
 ---
 
-## This is Zhezheng Jin's personal website
+## This is my personal website
 
 Hello, I'm Zhezheng Jin. Welcome to my digital space where you can learn more about me and my work.
 
+![](https://e.snmc.io/i/600/s/8b679f81554f9100a1ed09e85f8349f0/7469124/%E3%83%A8%E3%83%AB%E3%82%B7%E3%82%AB-yorushika-%E3%83%91%E3%83%AC%E3%83%BC%E3%83%89-parade-Cover-Art.jpg)
+
 ## Link to my resume
 
-[resume](resume.html)
+[My resume](resume.html)
+
+## Link to Question2
+
+[Instacart Analysis Dashboard](question2.html)

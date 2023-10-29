@@ -2,8 +2,6 @@ title: "My personal website"
 navbar:
    title: "Home"
    right:
-    - text: "Resume"
-      href: resume.html
     - icon: fa-github fa-lg
       href: https://github.com/ZhezhengJin/
     - icon: fa-envelope fa-lg
