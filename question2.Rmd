@@ -1,48 +1,28 @@
 ---
-title: "Instacart Analysis with Flexdashboard"
+title: "Instacart Dashboard"
 author: "Zhezheng Jin"
 output: 
   flexdashboard::flex_dashboard:
     orientation: columns
     vertical_layout: fill
     navbar:
-      - { title: "Home", href: index.html }
+    - title: "Home"
+      href: index.html
 ---
 
 ```{r setup, include=FALSE}
 library(tidyverse)
-library(knitr)
 library(plotly)
 library(p8105.datasets)
 library(flexdashboard)
 
 knitr::opts_chunk$set(
-	echo = TRUE,
+	echo = FALSE,
 	warning = FALSE,
-	message = FALSE,
-	fig.width = 8, 
-  fig.height = 6,
-  out.width = "90%"
+	message = FALSE
 )
-
-theme_set(theme_minimal() + theme(legend.position = "bottom"))
-
-options(
-  ggplot2.continuous.colour = "viridis",
-  ggplot2.continuous.fill = "viridis"
-)
-
-scale_colour_discrete = scale_colour_viridis_d
-scale_fill_discrete = scale_fill_viridis_d
 ```
 
-Let's take a look at the dataset 
-
-```{r}
-instacart
-```
-
-Data wrangling
 
 ```{r}
 instacart <- instacart %>%
@@ -60,29 +40,27 @@ instacart <- instacart %>%
   order_dow = factor(order_dow, levels = c("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")))
 ```
 
+From the dataset, we know there are `r ncol(instacart)` variables in this dataset: `r paste(colnames(instacart), collapse=", ")`. With these information, I am going to create 3 distinct plots: a histogram, a line plot, and a box plot.
 
-From the dataset, we know there are `r ncol(instacart)` variables in this dataset: `r paste(colnames(instacart), collapse=", ")`. With these information, I am going to create 3 distinct plots:
+Column {data-width=600}
+-----------------------------------------------------------------------
 
-1. A histogram showing the number of orders for each day of the week.
+### Distribution of Orders by Day of the Week
 
-2. A line plot showing the average number of Orders by hour within each day of the week.
-
-3. A box plot of distribution of Add to Cart Order for top 5 Products.
-
-
-## Histogram
-
-```{r}
-plot_ly(instacart, x = ~order_dow) %>%
+```{r histogram}
+plot_ly(instacart, x = ~order_dow, color = ~order_dow) %>%
   add_histogram(name = "Count of Orders") %>%
-  layout(title = "Distribution of Orders by Day of the Week",
-         xaxis = list(title = 'Day of the Week'), 
-         yaxis = list(title = 'Count of Orders'))
+  layout(xaxis = list(title = 'Day of the Week'), 
+         yaxis = list(title = 'Count of Orders'),
+         showlegend = FALSE)
 ```
 
-## Line plot
+Column {data-width=400}
+-----------------------------------------------------------------------
 
-```{r}
+### Average Number of Orders by Hour within each Day of the Week
+
+```{r line plot}
 instacart %>%
   group_by(order_dow, order_hour_of_day) %>%
   summarise(avg_orders = n() / n_distinct(user_id)) %>%
@@ -94,20 +72,20 @@ instacart %>%
           mode = "lines+markers", 
           marker = list(size = 7),
           line = list(width = 2)) %>%
-  layout(title = "Average Number of Orders by Hour within each Day of the Week",
-         xaxis = list(title = "Hour of the Day"),
+  layout(xaxis = list(title = "Hour of the Day"),
          yaxis = list(title = "Average Number of Orders"),
          legend = list(title = list(text = 'Day of the Week')),
          showlegend = TRUE)
 ```
 
-## Box plot
+### Distribution of Add to Cart Order for Top 5 Products
 
-```{r}
+```{r box plot}
 top_products <- instacart %>%
   group_by(product_name) %>%
   tally() %>%
-  top_n(5, wt = n) %>%
+  arrange(desc(n)) %>%
+  slice_head(n = 5) %>%
   pull(product_name)
 
 subset_data <- instacart %>%
@@ -115,13 +93,10 @@ subset_data <- instacart %>%
 
 plot_ly(data = subset_data, 
         y = ~add_to_cart_order, 
-        x = ~product_name, 
+        x = ~product_name,
+        color = ~product_name,
         type = "box",
         orientation = "v") %>%
-  layout(title = "Distribution of Add to Cart Order for Top 5 Products",
-         yaxis = list(title = "Add to Cart Order"),
+  layout(yaxis = list(title = "Add to Cart Order"),
          xaxis = list(title = "Product Name", tickangle = 15))
 ```
-
-
-

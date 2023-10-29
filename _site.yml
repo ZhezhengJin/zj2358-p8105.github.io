@@ -1,4 +1,5 @@
-title: "My personal website"
+name: "My personal website"
+output_dir: "."
 navbar:
    title: "Home"
    right:

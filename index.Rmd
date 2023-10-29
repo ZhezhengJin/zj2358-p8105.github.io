@@ -14,4 +14,4 @@ Hello, I'm Zhezheng Jin. Welcome to my digital space where you can learn more ab
 
 ## Link to Question2
 
-[Instacart Analysis Dashboard](question2.html)
+[Instacart Dashboard](question2.html)
