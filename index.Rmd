@@ -1,15 +1,11 @@
 ---
 title: "ZhezhengJin's website"
-output: 
-  html_document:
-    toc: true
-    toc_float: true
 ---
 
-# This is Zhezheng Jin's personal website
+## This is Zhezheng Jin's personal website
 
 Hello, I'm Zhezheng Jin. Welcome to my digital space where you can learn more about me and my work.
 
-# Link to my resume
+## Link to my resume
 
 [resume](resume.html)

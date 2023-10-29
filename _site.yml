@@ -1,15 +1,17 @@
-name: "Zhezheng Jin"
+title: "My personal website"
 navbar:
-  left:
-    - text: "Home"
-      href: index.html
+   title: "Home"
+   right:
     - text: "Resume"
       href: resume.html
-  right:
     - icon: fa-github fa-lg
       href: https://github.com/ZhezhengJin/
     - icon: fa-envelope fa-lg
       href: mailto:zj2358@cumc.columbia.edu
-output:
+    - icon: fa-linkedin fa-lg
+      href: https://www.linkedin.com/in/zhezheng-jin-3695b0250/
+output: 
   html_document:
     theme: cerulean
+    toc: true
+    toc_float: true
